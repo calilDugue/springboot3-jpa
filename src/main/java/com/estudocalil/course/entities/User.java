@@ -2,11 +2,21 @@ package com.estudocalil.course.entities;
 
 import java.io.Serializable;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
 //Existe uma interface no java chamada serializible em que você define com seus objetos quando você quer que seu objeto seja transformado em uma cadeia de bytes, para que você possa utilizá-lo como por exemplo gravação em arquivos.
+@Entity
+@Table(name = "tb_user")
 public class User implements Serializable {
     private static final long serialVersionUID = 1L;
 
     //Atributos básicos
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private String email;
