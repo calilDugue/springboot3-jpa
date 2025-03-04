@@ -1,11 +1,16 @@
 package com.estudocalil.course.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 //Existe uma interface no java chamada serializible em que você define com seus objetos quando você quer que seu objeto seja transformado em uma cadeia de bytes, para que você possa utilizá-lo como por exemplo gravação em arquivos.
@@ -22,6 +27,10 @@ public class User implements Serializable {
     private String email;
     private String phone;
     private String password;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "client")
+    private List<Order> orders = new ArrayList<>();
 
     //Construtores, como estamos usando framework, sou obrigado a criar um construtor vazio!
     public User() {
@@ -75,6 +84,10 @@ public class User implements Serializable {
 
     public void setPassword(String password) {        
         this.password = password;
+    }
+
+    public List<Order> getOrders() {
+        return orders;
     }
 
     //Gerar hashCode e equals    
