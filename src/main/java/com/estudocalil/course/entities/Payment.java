@@ -3,6 +3,8 @@ package com.estudocalil.course.entities;
 import java.io.Serializable;
 import java.time.Instant;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.annotation.Generated;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -23,6 +25,7 @@ public class Payment implements Serializable{
     private Instant moment;
 
     @OneToOne
+    @JsonIgnore
     @MapsId
     private Order order;
 
